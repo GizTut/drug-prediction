@@ -12,7 +12,6 @@
 ## Table of Contents
 
 - [Highlights](#highlights)
-- [Data](#data)
 - [Methods](#methods)
 - [Results](#results)
 - [Repository Structure](#repository-structure)
@@ -35,14 +34,7 @@
 
 ---
 
-## Data
-
-| Source | Content | Use |
-|---|---|---|
-| **CCLE** (Barretina et al., 2012) | Gene-level mRNA expression for 918 cancer cell lines (18,926 genes) | Predictor matrix (curated to 415 cell lines, 18,479 mapped via `org.Hs.eg.db` v3.23.1) |
-| **GDSC** (Iorio et al., 2016; Yang et al., 2012) | IC50 values (µM) for 7 bromodomain inhibitors | Response variable |
-
-**Per-drug sample sizes after IC50 < 200 µM filtering and partitioning (Table 1 in the paper):**
+**Per-drug sample sizes after IC50 < 200 µM filtering and partitioning (Table 1):**
 
 | Drug | GDSC records | Retained | % | Train | Test | Validation |
 |---|---:|---:|---:|---:|---:|---:|
@@ -53,8 +45,6 @@
 | OTX015 | 728 | 390 | 94.0 | 274 | 80 | 36 |
 | I-BET-762 | 727 | 366 | 88.2 | 258 | 72 | 36 |
 | AZD5153 | 727 | 406 | 97.8 | 286 | 80 | 40 |
-
-**Compound profile:** JQ1, OTX015, I-BET-762, AZD5153 are BET inhibitors; PFI-1 is a BET chemical probe; RVX-208 is BD2-selective; **I-BRD9 selectively targets BRD9 (non-BET) and serves as a comparator**.
 
 ---
 
@@ -67,17 +57,6 @@
 - Stratified train/test/validation split on quartile-binned IC50 via `caret::createDataPartition()`.
 - Min–max [0, 1] rescaling of expression features; **scaler fit on training set only** to prevent leakage.
 - Filter feature selection: top-50/100/150 genes by absolute Pearson correlation with log10 IC50.
-
-### Algorithms and hyperparameter grids (Table 2)
-
-| Model | R Package | Hyperparameter grid |
-|---|---|---|
-| KNN | `kknn` 1.4.1 | `kmax ∈ {3,5,…,35}`, `distance ∈ {1,2}`, kernel ∈ {rectangular, triangular, epanechnikov, gaussian} |
-| Elastic Net | `elasticnet` 1.3 | `λ ∈ {0.0,…,1.0}`, `fraction ∈ {0.1,…,1.0}` |
-| Neural Net | `nnet` 7.3-20 | `size ∈ {1,3,5}`, `decay ∈ {0, 0.001, 0.01}`, `maxit = 500` |
-| SVM (RBF) | `kernlab` 0.9-33 | `C ∈ {2⁻²,…,2⁵}`, `σ ∈ {2⁻⁵,…,2²}` |
-| XGBoost | `xgboost` 3.2.0.1 | `η ∈ {0.05, 0.1, 0.3}`, `max_depth ∈ {3,5,7}`, subsample/colsample ∈ {0.7, 1.0}, `min_child ∈ {1,3}`, `γ ∈ {0, 0.1}` |
-| Random Forest | `randomForest` 4.7-1.2 | `mtry ∈ {√p, p/3, p/5, p/2}`, `ntree = 500` |
 
 ### Model selection
 - Fully nested **5×5 cross-validation** across 126 configurations (7 drugs × 6 models × 3 feature-set sizes).
@@ -382,22 +361,6 @@ source("07_visualize.R")                   # ~5 min
 - **Version stability:** R `4.5.0` was used. Other versions may produce slightly different results due to RNG changes — pin your R version with `renv` if exact reproducibility is critical.
 - **Cross-platform:** Tested on macOS. Should work on Linux/Windows with the same package versions.
 
-## Citation
-
-If you use this code or data, please cite:
-
-> [Author names]. *[Paper title]*. [Journal name], [Year]. DOI: [10.xxxx/xxxx]
-
-```bibtex
-@article{tutkun2026bet,
-  title={...},
-  author={Tutkun, Gizem and ...},
-  journal={...},
-  year={2026},
-  doi={10.xxxx/xxxx}
-}
-```
-
 ## Contact
 
 **Gizem Tutkun**
@@ -412,10 +375,11 @@ The R code in this repository is released under the **MIT License** — you are 
 
 ## Acknowledgments
 
-- **CancerRxGene/GDSC** — for the cell line drug sensitivity data
+-
+-  **CancerRxGene/GDSC** — for the cell line drug sensitivity data
 - **R caret, xgboost, randomForest** maintainers — for the ML implementations
 - **Bioconductor** — for `org.Hs.eg.db` annotation database
 
 ---
 
-*Last updated: May 2026*
+*Last updated: June 2026*
