@@ -12,8 +12,6 @@
 ## Table of Contents
 
 - [Highlights](#highlights)
-- [Abstract](#abstract)
-- [Study Design](#study-design)
 - [Data](#data)
 - [Methods](#methods)
 - [Results](#results)
@@ -34,27 +32,6 @@
 - Permutation feature importance + pathway enrichment **recovers the established clinical biology of BET inhibition** (leukocyte/lymphocyte proliferation, actin cytoskeleton organization) without any prior pathway knowledge.
 - Fully nested **5×5 cross-validation** with the **1-SE rule** across 126 configurations (7 drugs × 6 models × 3 feature-set sizes).
 - Reproducible pipeline of **12 modular R scripts** under the MIT license.
-
----
-
-## Abstract
-
-**Background.** BET-family proteins, particularly BRD4, are critical regulators of oncogenic transcription, and BET inhibitors are being investigated for hematological malignancies and solid tumors. Response to BET inhibitors is highly heterogeneous, motivating predictive biomarker development.
-
-**Methods.** We systematically benchmarked six ML algorithms — KNN, elastic net, neural network, SVM, XGBoost, random forest — for predicting IC50 of seven bromodomain inhibitors (RVX-208, PFI-1, JQ1, I-BRD9, OTX015, I-BET-762, AZD5153) using gene expression from 415 CCLE/GDSC cancer cell lines. Each drug-specific dataset was partitioned into train (70%) / test (20%) / validation (10%). Pearson-correlation feature selection (50/100/150 genes) was combined with nested 5×5 cross-validation. Model selection used the 1-SE rule. Permutation feature importance and KEGG/GO over-representation were used for interpretation.
-
-**Results.** No single algorithm dominated; best model was drug-specific. Random forest was the most consistent. JQ1 was the most predictable (R² = 0.428), OTX015 the most challenging (R² = 0.239). Permutation importance identified **128 unique recurrent predictor genes**; pathway enrichment showed strong over-representation of **leukocyte proliferation (p = 2.5 × 10⁻¹¹)**, lymphocyte proliferation, and actin cytoskeleton organization — themes consistent with the known activity of BET inhibitors in hematological malignancies.
-
-**Conclusion.** Drug-specific model selection outperforms a one-size-fits-all approach. The convergence of permutation-derived predictor genes with established BET biology demonstrates that interpretable ML can recover biologically meaningful signals without explicit pathway knowledge.
-
-**Keywords:** BET inhibitors; drug sensitivity prediction; machine learning; gene expression; cancer cell lines; IC50; pathway enrichment.
-
----
-## Study Design
-
-![Figure 1 — Study design and analysis pipeline](figures/figure1.png)
-
-**Figure 1.** Gene expression for 918 cell lines was retrieved from GEO and curated to 415 cell lines after removing missing measurements. IC50 values for seven bromodomain inhibitors were obtained from GDSC. Cell lines with IC50 < 200 µM were retained, log10-transformed, and split 70/20/10 (train/test/validation). Top-50/100/150 genes were selected by absolute Pearson correlation with log10 IC50. Six ML algorithms were trained under nested 5×5 cross-validation; the optimal feature-set size was selected by the 1-SE rule. Final models were evaluated on held-out sets, followed by permutation feature importance and KEGG/GO pathway enrichment.
 
 ---
 
