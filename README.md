@@ -17,7 +17,6 @@
 - [Repository Structure](#repository-structure)
 - [Requirements](#requirements)
 - [Reproducing the Analysis](#reproducing-the-analysis)
-- [Figures](#figures)
 - [License](#license)
 - [Contact](#contact)
 
@@ -224,23 +223,6 @@ Rscript R/10_tables.R
 ```
 
 Set a global seed at the top of `01_load_data.R` to reproduce splits exactly.
-
----
-
-## Figures
-
-All figures used in the manuscript are included in [`figures/`](figures/):
-
-| # | File | Description |
-|---:|---|---|
-| 1 | `figures/figure1.png` | Study design and analysis pipeline |
-| 2 | `figures/figure2.png` | Log10-transformed IC50 distributions of seven bromodomain inhibitors |
-| 3 | `figures/figure3.png` | Cross-validation RMSE distribution across outer folds for each drug–model pair |
-| 4 | `figures/figure4.png` | Test RMSE heatmap across seven inhibitors × six ML algorithms |
-| 5 | `figures/figure5.png` | Test-set performance (RMSE and R²) of the best-performing model per drug |
-| 6 | `figures/figure6.png` | Predicted vs observed log10 IC50 for each drug's best model |
-| 7 | `figures/figure7.png` | KEGG pathway over-representation of the 128 recurrent predictor genes |
-| 8 | `figures/figure8.png` | GO Biological Process enrichment of recurrent predictor genes |
 
 ---
 ## Folder Structure
