@@ -18,7 +18,6 @@
 - [Requirements](#requirements)
 - [Reproducing the Analysis](#reproducing-the-analysis)
 - [Figures](#figures)
-- [Citation](#citation)
 - [License](#license)
 - [Contact](#contact)
 
@@ -371,12 +370,13 @@ Medical Biotechnology - Akdeniz University
 
 The R code in this repository is released under the **MIT License** — you are free to use, modify, and redistribute it, provided you include the original copyright notice. See the [`LICENSE`](LICENSE) file for full terms.
 
-**Data files** (`GeneExp.csv` and the seven `*.xls` files) are derived from publicly available sources, primarily [Genomics of Drug Sensitivity in Cancer (GDSC) / CancerRxGene](https://www.cancerrxgene.org/). These data files are **not** covered by the MIT License and are subject to their original sources' terms of use. If you intend to redistribute the data, please consult the original source.
+**Data files** (`GeneExp.csv` and the seven `*.xls` files) are derived from publicly available sources. The gene expression matrix (`GeneExp.csv`) was derived from the Cancer Cell Line Encyclopedia (CCLE) gene expression dataset deposited in the NCBI Gene Expression Omnibus under accession [GSE36133](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE36133). The drug sensitivity files (`*.xls`) were derived primarily from the [Genomics of Drug Sensitivity in Cancer (GDSC) / CancerRxGene ](https://www.cancerrxgene.org/).
+
 
 ## Acknowledgments
 
--
--  **CancerRxGene/GDSC** — for the cell line drug sensitivity data
+- **Gene Expression** - for the gene expression data
+- **CancerRxGene/GDSC** — for the cell line drug sensitivity data
 - **R caret, xgboost, randomForest** maintainers — for the ML implementations
 - **Bioconductor** — for `org.Hs.eg.db` annotation database
 
